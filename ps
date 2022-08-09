@@ -1,0 +1,23 @@
+-Force forces a command to complete with no input requirded
+-ErrorAction gives opotions to handle errors with commands
+
+
+Get-ChildItem -path C:\ -Recurse -Filter *.pf -name
+-finds every file with .pf in C:\
+
+#switch parameters are boolean and are off by defualt EX: -recurse
+#postitional parameters do not need specification and ps will try to interpret them based on content type
+
+Get-ChildItem -recurse -filter C:\ *.pf -name 
+#C:\ is positional and does not need -path and can be moved anywhere
+
+Get-Command
+#gets every command 
+
+Get-Command -noun *item*
+#any command wth item in the noun( works with verb too)
+
+
+Get-Command *keyword*
+#best option
+
