@@ -19,5 +19,125 @@ Get-Command -noun *item*
 
 
 Get-Command *keyword*
-#best option
+#best option  
+
+VARIABLES:
+
+write-host writes directly to the screeen
+write-output passes data to next command
+
+      Python      Bash      PoSh
+init  var         var       $var
+call  var         $var      $var
+
+$varS = "string"
+$var = 85869
+
+$var - 1
+
+$var1,$var2 = 65535,-1
+
+$var1 = $var2 = $var3 = 65535
+-all equal 65535
+
+del = remove-item removes variables
+
+remove-item varible:var1
+
+AUTOMATIC VARIABLES:
+
+$args - Contains an array of values for undeclared parameters that are passed to a function, script, or script block. 
+
+$input - Contains an enumerator that enumerates all input that is passed to a function.
+
+$_ - Same as $PSItem. Contains the current object in the pipeline object. You can use this variable in commands that perform an action on every object or on selected objects in a pipeline.
+
+$PROFILE - Contains the full path of the PowerShell profile for the current user and the current host application. You can use this variable to represent the profile in commands.
+
+$null - $null is an automatic vareate an array containing a range with a random starting and stopping point. The starting point will be a random number from -10 through 0. The ending point will be a random number from 1 through 20.iable that contains a null or empty value. You can use this variable to represent an absent or undefined value in commands and scripts.
+
+$true
+$false
+
+ENVIROMENTAL VARIABLES:
+
+$env:HomePath
+C:\users\student\
+
+TYPECASTING:
+
+$int="string" - is string
+
+$int = 4 - is int
+
+[int]$int = 4 - convert to int
+
+[int]$string = "4" - temporarely converts to int  
+  
+[int]0xFF
+255
+
+
+ARRAYS:
+
+$array = 1,2,3,4,5
+$array = @(1,2,3,4,5)
+[array]$blankarray = ""
+
+$array -is [array]
+True
+
+$array.count
+-number of elements
+
+$poly_arr = (get-computerinfo) , "help me, im trapped", 6472
+-runs get-computer info but stores it as one element along with the 2 other elements
+
+
+$poly_arr | select-object -index1
+$poly_arr[1]
+-references second element
+
+$seq_nums = 4..50
+-list of numbers 4-50
+
+
+$seq_nums[-1]
+-last index
+
+$seq_nums[1,30,20,11]
+
+JAGGED ARRAYS:
+
+$nested = @,!,$array,#
+
+Inerp:
+{@,!,{1,2,3},#}
+
+Human view:
+@,$null,$null
+!,$null,$null
+1,2,3
+#,$null,$null
+
+$nested[2] = 1,2,3
+
+$nested[2][1] = 2
+
+$nested[3][1] = $error
+
+Multi-deminsional array:
+
+$multi = {tri, square, {@,!,{1,2,3},#} cir}
+
+Human View:
+
+tri,    $null, $null, $null
+square, $null, $null, $null
+@,      !,     1,     #
+$null,  $null ,2,     $null
+$null,  $null, 3,     $null 
+cir,   $null, $null,  $null
+
+
 
