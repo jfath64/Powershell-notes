@@ -213,6 +213,220 @@ to evaluate &$b
 
  
 
+ CUSTOM OBJECTS:
+ 
+ $mycar
+
+$mycar = New-Object Object
+
+PS C:\windows\system32> Add-Member -MemberType NoteProperty -Name Color -value "Blue-gray Green Turqoise Thing" -InputObject $mycar = -Val
+
+PS C:\windows\system32> Add-Member -MemberType ScriptMethod -Name Read -Value {"I'm not entirely sure this book is appropriate."} -InputObject $mycar
+
+
+COMPARISON OPERATORS:
+
+Equals
+2 -eq 2
+2 -eq 3
+1,2,3 -eq 2
+"abc" -eq "abc"
+"abc" -eq "abc", "def"
+"abc", "def" -eq "abc"
+
+Not Equals
+"abc" -ne "abc"
+"abc" -ne "def"
+"abc" -ne "abc", "def"
+"abc", "def" -ne "abc"
+
+Greater than
+8 -gt 6
+7,8,9 -gt 8
+
+less than
+6 -lt 8
+7,8,9 -lt 9
+
+Greater than or equal
+6 -ge 6
+5,6,7 -ge 6
+
+Less than or equal
+6 -le 6
+5,6,7 -le 6
+
+like
+"Inky" -like "*" true
+"Blinky" -like "Bl?nky" true
+"Pinky" -like "[L-Q]inky" true
+"Clyde" -like "[ABC]lyde" true
+
+"Inky" -notlike "*" false
+"Blinky" -notlike "Bl?inky" true
+"Pinky" -notlike "[A-F]inky" true 
+"Clyde" -notlike "[DEF]lyde" true
+
+
+match
+$text = "Your Account username is ACE4495"
+$pattern = '([A-F{3})(\d{4})'
+$text -match $pattern true
+
+contains 
+$ghosts = 'Inky', 'Blinky', 'Pinky', 'Clyde'
+$ghosts -contain 'pinky'
+
+
+-for case sensetivity put a 'c' in front of compareison op
+
+$num = 5
+
+(($num -gt 1) -and ($num -lt 10)) true
+
+(($num -gt 6) -or ($num -lt 10)) true
+
+
+
+
+Get-Service | Where-Object{$_.Status -eq 'running'}
+
+Get-Childitem *.txt | Where-Object{$_.Length -gt 100}
+
+Get-Process | Where-Object {$_.Company -like 'micro*'} | Format-Table Name, Description, Company
+
+Conditional:
+
+if ($x -eq 5) {
+      Write-Host "Bob"
+}
+elseif ($x -eq 4) {
+      Write-Host "Sue"
+}
+elseif ($x -eq 2) {
+      "tom"
+}
+elseif ($x -gt 1) {
+      "Mary"
+}
+else{
+"who am i"
+}
+
+
+Switch(10)
+{
+      (1+9){
+            "correct"
+      }
+      (1+10){
+      "wrong"
+      }
+      (11-1){
+      "correct"
+      }
+      (1-11){
+      "wrong"
+      }
+}
+
+
+      
+
+
+
+$line1 = "Do you have model number: MT5437 for john.doe@sharklasers.com?"
+$line2 = "What model number for john.doe@sharklasers.com?"
+$pattern = '\s[A-Z][A-Z]\d\d\d\d\s'
+
+switch($pattern){
+
+{$line1 -match $_}{
+$line1 -match $pattern | out-null
+$model = $matches[0]
+"$model in line 1"
+}
+{$line2 -match $_}{
+$line2 -match $pattern | out-null
+$model = $Matches[0]
+"$model in line 2"
+}
+{$line1 -notmatch $_}{
+"no matchh line 1"
+}
+{$line2 -notmatch $_}{
+"no match line 2"
+}
+}
+
+
+
+
+
+
+
+LOOPS:
+
+for (initialization; condition; increment)
+{
+code
+}
+
+
+foreach ($item in expression)
+{
+code
+}
+
+EX: foreach (item in gci C:\ -recurse){$item.name}
+
+
+$boject | foreach-object { code }
+
+
+while(condition){
+code
+}
+
+do{
+code
+}while(condition)
+
+do{
+code
+}until(condition is false)
+
+
+
+FILES:
+
+Get-content
+-reads from file
+
+(get-content .\example.txt)[0]
+-writes to line 1
+
+set-content
+-writes to file
+
+EX: set-content -path .\example.txt -value "string"
+
+add-content
+-appends to a file
+
+EX: add-content -path .\example.txt -value "another string"
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
