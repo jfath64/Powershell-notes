@@ -158,6 +158,7 @@ $hash2.is_anime = "yes"
 is_anime        yes
 
 
+
 $hash2["is_bad"] = "yes2"
 
 
@@ -357,7 +358,7 @@ $model = $Matches[0]
 {$line2 -notmatch $_}{
 "no match line 2"
 }
-}
+}[math]::Sqrt(9)
 
 
 
@@ -417,21 +418,123 @@ add-content
 EX: add-content -path .\example.txt -value "another string"
 
 
+FUNCTIONS:
+
+
+function <name> { code }
+
+stored in tbe powershell function drive
+
+get-childitem function:*
+
+
+function <name> ($<parameter name) { <function code>}
+
+
+functionname 42
+
+functionname -value 42
+
+
+function <name>{
+param(
+$parameter1='default val', $parameter2='default val'
+)
+code
+}
+
+
+
+function <name> {
+param(
+      [switch]
+      $switchparam
+      )
+      code
+ }
 
 
 
 
+function <name> {
+param(
+      [parameter(Mandatory=$true)]
+      $param )
+      code
+}
 
 
+while ([string]::IsNullOrWhiteSpace($param))
+-loops when nothing is inputted
+
+[Parameter(manditory=$true,helpmessage="Type in a number")]
+-gives an option to display a help message when prompted 
 
 
+function Positional-Params {
+param(
+[Parameter(Mandatory=$true,position=0)]
+[int]
+$number
+[parameter(madatory=$true,position=1)]
+[string]
+$string
+[paramter(mandatory=$true,position=2)]
+[string]
+$string2
+$string2
+)
+write-output "$number is the fist positional"
+write-output "$string is the second positional"
+write-output "$string2 is the third positional"
+}
 
 
+function cmdlet-function {
+[CmdletBinding(DefaultParameterSetName='tacos')]
+param(
+      [Parameter(ParameterSetName-"Tacos",Manditory=$true)]
+      $flavor,
+      [Parameter(ParameterSetName-"Tacos",Manditory=$true)]
+      $cheese,
+      [Parameter(ParameterSetName-"Tacos",Manditory=$true)]
+      $spice,
+      [Parameter(ParameterSetName-"Burritos",Manditory=$true)]
+      $beans,
+      [Parameter(ParameterSetName-"Burritos",Manditory=$true)]
+      $rice,
+      )
+
+      $parametersetname = $pscmdlet.parametersetname
+      "The $parametersetname parameter set was utilized"
+      
+}
+
+-treats the fucntion like a cmdlet
 
 
+function Function-Blocks {
+[cmdletbinding()]
+param()
+
+Begin{
+#one time action that happens before anything else in the function
+#happends before parameters are passed in
+}
+
+Process{
+#can run as many times as needed
+#record by record processing by fuction(enumerates everything)
+#can use the $_ to grab values passed to the function
+}
+
+End{
+#optional one-time post processing 
+#executes at the end of the function prior to exiting
+}
+
+}
 
 
-
-
-
+[ValidateRange(0,750)]$
 
